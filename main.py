@@ -61,7 +61,7 @@ if st.button("🌾 Predict Best Crop", use_container_width=True):
 
     st.success(f"✅ **Recommended Crop:** 🌱 **{prediction.upper()}**")
 
-    st.markdown("### 📊 Prediction Confidence")
+    st.markdown("### 🔮🧠 Prediction Confidence")
     for crop, p in top3:
         st.progress(int(p * 100))
         st.write(f"**{crop}** : {p * 100:.2f}%")
