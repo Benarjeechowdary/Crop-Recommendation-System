@@ -2,7 +2,7 @@
 
 An AI-powered Crop Recommendation System that predicts the most suitable crop based on soil nutrients and climate conditions using Machine Learning.
 
-This project demonstrates an end-to-end ML workflow including data preprocessing, model training, evaluation, and provide User Interface using Streamlit.
+This project demonstrates an end-to-end ML workflow including data preprocessing, model training, evaluation, and provides a user-friendly interface using Streamlit.
 
 ---
 
@@ -28,6 +28,7 @@ This system helps farmers and agricultural planners by recommending the best cro
 - Interactive & user-friendly **Streamlit web interface**
 - Uses **Random Forest Classifier**
 - Model and scaler saved using `joblib`
+- **Try the live app here:** [Know Your Crop](https://know-your-crop.streamlit.app/)
 
 ---
 
@@ -50,7 +51,3 @@ This system helps farmers and agricultural planners by recommending the best cro
 
 ### 📊 Prediction Result & Confidence
 ![Prediction Result](images/result.png)
-
----
-
-
