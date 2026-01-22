@@ -1,32 +1,37 @@
 import streamlit as st
 import joblib
 import numpy as np
-import pandas as pd
 
-# Page config
+# -------------------- PAGE CONFIG --------------------
 st.set_page_config(
     page_title="Crop Recommendation System",
     page_icon="🌱",
     layout="centered"
 )
 
-# Load model & scaler
-model = joblib.load("crop-model.pkl")
-scaler = joblib.load("crop-scaler.pkl")
+# -------------------- LOAD MODEL & SCALER --------------------
+@st.cache_resource
+def load_artifacts():
+    model = joblib.load("crop-model.pkl")
+    scaler = joblib.load("crop-scaler.pkl")
+    return model, scaler
 
-# Title
+model, scaler = load_artifacts()
+
+# -------------------- TITLE --------------------
 st.markdown(
     "<h1 style='text-align: center;'>🌱 Crop Recommendation System</h1>",
     unsafe_allow_html=True
 )
-st.write(
+
+st.markdown(
     "<p style='text-align: center;'>Enter soil and climate details to get the best crop recommendation</p>",
     unsafe_allow_html=True
 )
 
 st.divider()
 
-# Layout using columns
+# -------------------- INPUT LAYOUT --------------------
 col1, col2 = st.columns(2)
 
 with col1:
@@ -42,7 +47,7 @@ with col2:
 
 st.divider()
 
-# Predict button
+# -------------------- PREDICTION --------------------
 if st.button("🌾 Predict Best Crop", use_container_width=True):
 
     input_data = np.array([[N, P, K, temp, hum, ph, rain]])
@@ -61,26 +66,29 @@ if st.button("🌾 Predict Best Crop", use_container_width=True):
 
     st.success(f"✅ **Recommended Crop:** 🌱 **{prediction.upper()}**")
 
-    st.markdown("### 🔮🧠 Prediction Confidence")
+    st.markdown("### 🔮 Prediction Confidence")
     for crop, p in top3:
         st.progress(int(p * 100))
         st.write(f"**{crop}** : {p * 100:.2f}%")
 
 st.divider()
 
-# Sidebar info
+# -------------------- SIDEBAR --------------------
 with st.sidebar:
     st.header("ℹ️ About")
+
     st.write(
         """
         This AI-based system recommends the most suitable crop
         using soil nutrients and climate conditions.
-        
+
         **Model Used:**
         - Random Forest Classifier
-        
+
         **Features:**
-        - N, P, K
+        - Nitrogen (N)
+        - Phosphorous (P)
+        - Potassium (K)
         - Temperature
         - Humidity
         - pH
