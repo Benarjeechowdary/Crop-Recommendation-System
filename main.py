@@ -11,8 +11,8 @@ st.set_page_config(
 )
 
 # Load model & scaler
-model = joblib.load("model.pkl")
-scaler = joblib.load("scaler.pkl")
+model = joblib.load("crop-model.pkl")
+scaler = joblib.load("crop-scaler.pkl")
 
 # Title
 st.markdown(
